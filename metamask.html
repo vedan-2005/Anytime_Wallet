@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Integration</title>
+</head>
+<body>
+
+<h1>MetaMask Integration Example</h1>
+<p id="accountDetails">Your MetaMask account details will be displayed here.</p>
+<button id="connectButton">Connect to MetaMask</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const connectButton = document.getElementById('connectButton');
+    const accountDetailsParagraph = document.getElementById('accountDetails');
+
+    let isConnected = false;
+
+    async function updateAccountDetails() {
+        // Request current accounts
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+
+        if (accounts.length > 0) {
+            const account = accounts[0];
+            accountDetailsParagraph.textContent = `Connected MetaMask account: ${account}`;
+            isConnected = true;
+        } else {
+            accountDetailsParagraph.textContent = "MetaMask wallet disconnected.";
+            isConnected = false;
+        }
+    }
+
+    async function handleConnect() {
+        // Check if MetaMask is installed
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                if (!isConnected) {
+                    // Request account access
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    await updateAccountDetails();
+                } else {
+                    // Disconnect the wallet
+                    await updateAccountDetails();
+                }
+            } catch (error) {
+                console.error("Error interacting with MetaMask:", error);
+            }
+        } else {
+            console.error("MetaMask not detected. Please install MetaMask.");
+        }
+    }
+
+    connectButton.addEventListener('click', handleConnect);
+});
+</script>
+
+</body>
+</html>
