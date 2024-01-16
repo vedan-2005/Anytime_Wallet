@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract NoInitialFundsContract {
+    address public owner;
+
+    // Event triggered on deployment
+    event ContractDeployed(address indexed deployer);
+
+    // Constructor to set the owner
+    constructor() {
+        owner = msg.sender;
+        emit ContractDeployed(msg.sender);
+    }
+
+    // Function to check the contract's balance
+    function getContractBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+}
