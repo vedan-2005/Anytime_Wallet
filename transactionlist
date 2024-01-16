@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bank Name - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #16a085;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .transaction-link {
+            color: #007BFF;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anytime Wallet</h1>
+        <p>Welcome, Vedant Kumar!</p>
+    </header>
+
+    <section>
+        <h2>Account Overview</h2>
+        <p>Your account balance is 500.00 Eth</p>
+        <p>Recent transactions:</p>
+        <ul>
+        No recent transaction history
+        </ul>
+    </section>
+
+    <footer>
+        &copy; 2024 Your Bank Name. All rights reserved.
+    </footer>
+
+    <script>
+        function openMetaMask(transactionHash) {
+            // Use the ethereum: URI scheme to open MetaMask with the specified transaction hash
+            const metaMaskLink = `ethereum:transaction-details?txhash=${transactionHash}`;
+            window.location.href = metaMaskLink;
+        }
+    </script>
+</body>
+</html>
